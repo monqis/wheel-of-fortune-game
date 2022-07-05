@@ -1,1 +1,1 @@
-# wheel-of-fortune-game
+# Spin the Wheel of Fortune
