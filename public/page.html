@@ -6,41 +6,25 @@
 </head>
 <body>
 
-<script src="../pixi/pixi.min.js"></script>
-<script type="text/javascript">
-    let type = "WebGL";
-    if (!PIXI.utils.isWebGLSupported()) {
-        type = "canvas";
-    }
 
-    PIXI.utils.sayHello(type);
+<p>Image to use:</p>
+<img id="scream" src="background.jpeg" alt="The Scream" width="220" height="277">
 
-    //Create a Pixi Application
-    const app = new PIXI.Application({width: 1000, height: 600});
+<p>Canvas to fill:</p>
+<canvas id="myCanvas" width="250" height="300"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML canvas tag.</canvas>
 
-    PIXI.Loader.shared
-        .add([
-            "00034-quantenphysik.jpeg",
-        ])
-        .load(setup);
+<p><button onclick="myCanvas()">Try it</button></p>
 
-    function setup() {
-        // create a background...
-        const background = new PIXI.Sprite(
-            PIXI.Loader.shared.resources["00034-quantenphysik.jpeg"].texture
-        );
-
-        background.width = app.screen.width;
-        background.height = app.screen.height;
-
-        app.stage.addChild(background);
-    }
-
-
-    //Add the canvas that Pixi automatically created for you to the HTML document
-    document.body.appendChild(app.view);
+<script>
+function myCanvas() {
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  var img = document.getElementById("scream");
+  ctx.drawImage(img,10,10);
+}
 </script>
-
 
 <button id="demo" onclick="myFunction()">Click for input</button>
 
