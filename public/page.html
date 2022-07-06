@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="../pixi/pixi.min.js"></script>
+<script type="text/javascript">
+    let type = "WebGL";
+    if (!PIXI.utils.isWebGLSupported()) {
+        type = "canvas";
+    }
+
+    PIXI.utils.sayHello(type);
+
+    //Create a Pixi Application
+    const app = new PIXI.Application({width: 1000, height: 600});
+
+    PIXI.Loader.shared
+        .add([
+            "00034-quantenphysik.jpeg",
+        ])
+        .load(setup);
+
+    function setup() {
+        // create a background...
+        const background = new PIXI.Sprite(
+            PIXI.Loader.shared.resources["00034-quantenphysik.jpeg"].texture
+        );
+
+        background.width = app.screen.width;
+        background.height = app.screen.height;
+
+        app.stage.addChild(background);
+    }
+
+
+    //Add the canvas that Pixi automatically created for you to the HTML document
+    document.body.appendChild(app.view);
+</script>
+
+
+<button id="demo" onclick="myFunction()">Click for input</button>
+
+
+<p>Hi!</p>
+
+<script>
+    async function myFunction() {
+        const userAction = async () => {
+            const response = await fetch('http://127.0.0.1:5000/data');
+            //extract JSON from the http response
+            // do something with myJson
+            console.log("getting")
+            return await response.json()
+        }
+        const response = await userAction();
+        console.log(response)
+        document.getElementById("demo").innerHTML = response['message'];
+    }
+</script>
+</body>
+</html>
