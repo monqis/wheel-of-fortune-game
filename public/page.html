@@ -6,12 +6,9 @@
 </head>
 <body>
 
-
-<p>Image to use:</p>
-<img id="scream" src="background.jpeg" alt="The Scream" width="220" height="277">
-
 <p>Canvas to fill:</p>
-<canvas id="myCanvas" width="250" height="300"
+
+<canvas id="myCanvas" width="800" height="600"
 style="border:1px solid #d3d3d3;">
 Your browser does not support the HTML canvas tag.</canvas>
 
@@ -19,9 +16,12 @@ Your browser does not support the HTML canvas tag.</canvas>
 
 <script>
 function myCanvas() {
+  var img = new Image();
+
   var c = document.getElementById("myCanvas");
   var ctx = c.getContext("2d");
-  var img = document.getElementById("scream");
+  // var img = document.getElementById("scream");
+    img.src = "background.jpeg"
   ctx.drawImage(img,10,10);
 }
 </script>
